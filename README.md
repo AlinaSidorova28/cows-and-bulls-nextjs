@@ -1,24 +1,4 @@
-# MongoDB and Mongoose with Next.js
-
-This example shows how you can use a MongoDB database to support your Next.js application.
-
-**Pet** is an application that allows users to add their pets' information (e.g., name, owner's name, diet, age, dislikes, likes, and photo). They can also delete it or edit it anytime.
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-mongodb-mongoose&project-name=with-mongodb-mongoose&repository-name=with-mongodb-mongoose)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-mongodb-mongoose with-mongodb-mongoose-app
-# or
-yarn create next-app --example with-mongodb-mongoose with-mongodb-mongoose-app
-```
+# Plunge into your childhood with a wonderful game '[Cows and bulls](https://alinasidorova28-cows-and-bulls.herokuapp.com/)'!  
 
 ## Install and run:
 
@@ -65,7 +45,3 @@ npm run dev
 yarn install
 yarn dev
 ```
-
-## Deploy on Vercel
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
