@@ -1,0 +1,82 @@
+$width: 555px;
+$height: 1000px;
+$dark-pink: #ef717f;
+$light-pink: #f8adb1;
+
+.body {
+  margin: 0;
+  font-family: Rubik, "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background: linear-gradient(#6b581326 100%, transparent 100%), no-repeat center/cover url("../public/img/field.jpg") fixed;
+  background-clip: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.div-class
+{
+  border-radius: 6px;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.wrapper {
+  @extend .div-class;
+
+  padding: 0;
+  top: 265px;
+  display: inherit;
+  flex-direction: column;
+}
+
+.logo {
+  background: no-repeat center url('../public/img/logo.png');
+  background-size: 90px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  height: 130px;
+  width: 130px;
+  background-color: #FFEB3B;
+  border-radius: 50%;
+  box-shadow: 0px 0px 8px 2px #FFB74D, 0px 0px 35px 15px #FBC02D, 0px 0px 80px 30px #FFEB3B, 0px 0px 100px 40px #fefefe;
+  z-index: -5;
+
+  @media screen and (max-width: $width) {
+    background-size: 55px;
+    top: 10px;
+    left: 10px;
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.login-icon {
+  background: no-repeat center url('../public/img/login.png');
+  background-size: 40px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.logout-icon {
+  @extend .login-icon;
+
+  background: no-repeat center url('../public/img/logout.png');
+  background-size: 40px;
+}
