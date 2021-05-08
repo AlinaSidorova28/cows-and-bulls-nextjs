@@ -1,0 +1,144 @@
+@import './index.scss';
+
+.click-background {
+  position: absolute;
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+}
+
+.center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: $width) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.sound-wrapper {
+  @extend .center;
+
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
+}
+
+.settings-cell {
+  @extend .center;
+
+  position: relative;
+  justify-content: space-between;
+  margin: 15px 0 35px;
+
+  @media screen and (max-width: $width) {
+    width: 90%;
+    margin: 10px 0 15px;
+  }
+}
+
+.left {
+  width: 34%;
+}
+
+.right {
+  width: 52%;
+}
+
+.right,
+.left {
+  align-items: unset;
+
+  @media screen and (max-width: $width) {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+.icon {
+  @extend .center;
+
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient($dark-pink, #fefefe, $dark-pink);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  img {
+    position: relative;
+    filter: brightness(0.5);
+  }
+}
+
+.dull {
+  box-shadow: none;
+  background: linear-gradient(#404040, #fefefe, #404040);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.language {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  padding: 0;
+  width: 84px;
+  border-radius: 6px;
+  background: linear-gradient($dark-pink, #fefefe, $dark-pink);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5), inset 0px 0px 20px 1px rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  list-style: none;
+  transition: linear 0.25s;
+  z-index: 10;
+
+  .li {
+    text-align: center;
+    padding: 0 7px;
+    height: 35px;
+    transition: linear 0.25s;
+
+    &:last-child(),
+    .chosen {
+      border: none;
+    }
+
+    &:hover:not(.dull):not(.transparent) {
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+      background: radial-gradient(transparent, #f8adb180);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}
+
+.difficulty {
+  @extend .language;
+
+  top: 0;
+  height: 35px;
+  padding: 0 7px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.transparent {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}

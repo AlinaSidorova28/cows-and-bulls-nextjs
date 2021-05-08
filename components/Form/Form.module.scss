@@ -1,0 +1,443 @@
+@import '../Game/Game.module.scss';
+@import '../../css/index.scss';
+
+$single-width: 486px;
+$multiple-width: 400px;
+
+@mixin change($single-width) {
+  .span-class,
+  .single-player-container .single-player-wrapper,
+  .single-player-container .single-player-background,
+  .body span:not(.mode):not(.inscription):not(.eye),
+  .rules-player-container .rules-player-wrapper,
+  .settings-player-container .settings-player-wrapper,
+  .app-clone .multiple-player-container { 
+      width: $single-width; 
+  }
+
+  .span-class,
+  .game-content .attempt-result,
+  .game-content .input-field {
+    font-size: 25px;
+  }
+
+  .game-content .input-field {
+    max-width: 115px;
+
+    &::placeholder {
+      font-size: 15px;
+    }
+  }
+
+  .game-content .input-field-name {
+    max-width: 245px;
+  }
+
+  .game-content .attempt-result img {
+    width: 53px;
+  }
+
+  .background {
+    background-size: 210px;
+  }
+
+  .span-class {
+    top: 161px;
+    padding: 0 5px;
+  }
+
+  .single-player-container span {
+    height: 70px;
+  }
+
+  .single-player-container .single-player-wrapper {
+    top: 228px;
+  }
+
+  .multiple-player-container .multiple-player-wrapper,
+  .login-player-container .login-player-wrapper {
+    width: $single-width;
+    top: 190px;
+  }
+
+  .login-player-container .login-player-wrapper .login-content .login {
+    img {
+      top: 12px;
+    }
+
+    .before {
+      top: 2px;
+    }
+  }
+
+  .login-player-container .login-player-wrapper .login-content .login-form {
+    .input-field-name {
+      font-size: 20px;
+      height: 45px;
+    }
+  }
+
+  .rules-player-container .rules-player-wrapper,
+  .settings-player-container .settings-player-wrapper {
+    top: 190px;
+  }
+
+  .rules-player-container .rules-player-wrapper:not(.rules-player-background),
+  .settings-player-container .settings-player-wrapper:not(.settings-player-background),
+  .login-player-container .login-player-wrapper:not(.login-player-background) {
+    height: 60vh;
+  }
+
+  .background-wait {
+    height: 190px;
+  }
+}
+
+.app-clone {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  .win {
+    width: 50vw;
+
+    @media screen and (max-width: 620px) {
+      width: 90vw;
+    }
+  }
+}
+
+.background {
+  background: no-repeat top url("./img/think.png");
+}
+
+.span-class {
+  position: absolute;
+  top: 199px;
+  width: $single-width;
+  font-size: 35px;
+  text-align: center;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: $light-pink #000 $dark-pink;
+  background: linear-gradient($light-pink, $dark-pink);
+  z-index: 3;
+}
+
+.wrapper-parameters {
+  position: absolute;
+}
+
+.wrapper-parameters:not(.single-player-background):not(.multiple-player-background):not(.login-player-background):not(.login-player-wrapper) {
+  height: 60vh;
+}
+
+.single-player-container {
+  @extend .container;
+  @extend .background;
+
+  span {
+    @extend .div-class;
+    @extend .span-class;
+  }
+
+  .single-player-wrapper {
+    @extend .wrapper;
+    @extend .wrapper-parameters;
+
+    top: 244px;
+    width: $single-width;
+  }
+}
+
+.single-player-background {
+  @extend .single-player-wrapper;
+
+  z-index: -2;
+  top: 0 !important;
+  height: 85%;
+  background-color: #fefefe;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.5), inset 0px 5px 40px 5px rgba(0, 0, 0, 0.5);
+}
+
+.app-clone {
+  .multiple-player-container {
+    width: $multiple-width;
+  }
+}
+
+.multiple-player-container,
+.login-player-container {
+  @extend .container;
+
+  position: relative;
+  min-height: 90vh;
+
+  span {
+    @extend .div-class;
+    @extend .span-class;
+
+    width: $multiple-width;
+  }
+
+  .multiple-player-wrapper,
+  .login-player-wrapper {
+    @extend .wrapper;
+    @extend .wrapper-parameters;
+
+    top: 244px;
+    width: $multiple-width;
+
+    .game-content {
+      margin: 10px 0px 10vh;
+    }
+  }
+
+  .multiple-player-background {
+    @extend .multiple-player-wrapper;
+    @extend .single-player-background;
+  }
+}
+
+.rules-player-container,
+.settings-player-container {
+  @extend .container;
+
+  .background-wait {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+
+  span:not(.mode):not(.inscription):not(.eye) {
+    @extend .div-class;
+    @extend .span-class;
+
+    z-index: 1;
+    top: 255px;
+    width: $single-width;
+  }
+
+  .rules-player-wrapper,
+  .settings-player-wrapper {
+    @extend .wrapper;
+    
+    position: absolute;
+    top: 300px;
+    width: $single-width;
+
+    .rules-content,
+    .settings-content {
+      @extend .game-content;
+
+      padding: 10px 25px;
+      white-space: pre-line;
+      text-align: justify;
+
+      .flex {
+        @extend .attempt;
+      }
+    }
+  }
+
+  .rules-player-wrapper:not(.rules-player-background),
+  .settings-player-wrapper:not(.settings-player-background) {
+    height: 55vh;
+  }
+}
+
+.login-player-container {
+  .background-wait {
+    position: absolute;
+    top: 0;
+    z-index: 5;
+  }
+
+  span {
+    top: 255px;
+  }
+
+  .login-player-wrapper {
+    top: 300px;
+
+    .login-content {
+      @extend .game-content;
+
+      margin: 20px 0;
+    }
+  }
+
+  .login-player-wrapper:not(.login-player-background) {
+    height: 55vh;
+  }
+}
+
+.rules-player-background {
+  @extend .rules-player-wrapper;
+  @extend .single-player-background;
+}
+
+.settings-player-background {
+  @extend .settings-player-wrapper;
+  @extend .single-player-background;
+}
+
+.login-player-background {
+  @extend .login-player-wrapper;
+  @extend .single-player-background;
+}
+
+.inscription {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+.game-content:not(.rules-content):not(.settings-content):not(.login-content) {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.game-content {
+  margin: 20px 0;
+  height: 100%;
+  overflow: overlay;
+
+  .attempt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .attempt-result {
+    @extend .attempt;
+
+    font-size: 35px;
+    margin-bottom: 10px;
+
+    img {
+      width: 75px;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .input-field {
+    padding-left: 10px;
+    margin-right: 7%;
+    border-radius: 50%;
+    outline: none;
+    font-family: cursive;
+    text-align: center;
+    font-size: 35px;
+    max-width: 140px;
+    letter-spacing: 5px;
+    border-style: none;
+    background: radial-gradient(transparent, #f8adb180);
+
+    &::placeholder {
+      font-size: 20px;
+    }
+
+    &:not(.disabled) {
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .input-field-name {
+    @extend .input-field;
+    
+    margin: 0 0 20px;
+    max-width: 360px;
+    border-radius: 6px;
+  }
+}
+
+.login-player-wrapper .login-content .login-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7px;
+
+  .input-field-name {
+    max-width: 300px;
+    height: 50.8px;
+    font-size: 24px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  .input-field-name:not(.name) {
+    padding-right: 40px;
+  }
+
+  .input-field-name.red {
+    border: solid #e73d3d;
+    box-shadow: 0px 0px 5px 2px #e73d3d;
+  }
+
+  .button {
+    min-width: 30%;
+  }
+}
+
+.login-player-wrapper .login-content {
+  .eye {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+
+    img {
+      position: absolute;
+      top: 20px;
+      right: 15px;
+    }
+
+    .before {
+      position: absolute;
+      top: 9px;
+      right: 19px;
+      color: #807e85;
+      z-index: -1;
+    }
+  }
+}
+
+.question {
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: #0000ee;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.error {
+  font-size: 15px;
+  margin: -15px 0 5px 0;
+  color: #e73d3d;
+}
+
+@media screen and (max-width: $width) {
+  @include change($single-width: 300px);
+}
+
+@media screen and (max-width: 880px) {
+  .app-clone {
+    flex-direction: column;
+  }
+}
