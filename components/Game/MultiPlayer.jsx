@@ -106,8 +106,8 @@ class MultiPlayer extends React.PureComponent {
           number={firstWon ? firstNumber : secondNumber}
           mode="multiple"
           lang={settings.language}
-          sound={settings.sound === 'true'}
-          music={settings.music === 'true'}
+          sound={settings.sound}
+          music={settings.music}
           textFirst={firstName}
           textSecond={secondName}
         />
@@ -122,7 +122,7 @@ class MultiPlayer extends React.PureComponent {
             inputId="input"
             mode="multiple"
             lang={settings.language}
-            sound={settings.sound === 'true'}
+            sound={settings.sound}
             text={`${textForGame[settings.language].multiple.text[i]}, ${textForGame[settings.language].multiple.text[2]}`}
             isForMakingNumber
             whichNumber={i + 1}
@@ -150,7 +150,7 @@ class MultiPlayer extends React.PureComponent {
             text={firstName}
             mode="multiple"
             lang={settings.language}
-            sound={settings.sound === 'true'}
+            sound={settings.sound}
             inputId="input-1"
             focus={doesFirstMove}
             isDisabled={!doesFirstMove}
@@ -170,7 +170,7 @@ class MultiPlayer extends React.PureComponent {
             text={secondName}
             mode="multiple"
             lang={settings.language}
-            sound={settings.sound === 'true'}
+            sound={settings.sound}
             inputId="input-2"
             focus={doesSecondMove}
             isDisabled={!doesSecondMove}
@@ -182,7 +182,7 @@ class MultiPlayer extends React.PureComponent {
         <BackToMenu
           mode="multiple-game"
           lang={settings.language}
-          sound={settings.sound === 'true'}
+          sound={settings.sound}
         />
       </div>
     );

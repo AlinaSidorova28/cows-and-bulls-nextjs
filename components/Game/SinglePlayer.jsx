@@ -52,8 +52,8 @@ class SinglePlayer extends React.Component {
           attempts={attempts}
           mode="single"
           lang={settings.language}
-          sound={settings.sound === 'true'}
-          music={settings.music === 'true'}
+          sound={settings.sound}
+          music={settings.music}
         />
       );
     }
@@ -71,7 +71,7 @@ class SinglePlayer extends React.Component {
           diffIndex={diffIndex}
           mode="single"
           lang={settings.language}
-          sound={settings.sound === 'true'}
+          sound={settings.sound}
           difficulty={settings.difficulty}
           inputId="input"
           focus

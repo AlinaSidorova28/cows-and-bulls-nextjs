@@ -1,25 +1,24 @@
 import React from 'react';
-import Link from 'next/link';
 import nookies from 'nookies';
-import style from '../css/Statistics.module.scss';
 
 import AuthorizationForm from '../components/Form/AuthorizationForm';
-import textForGame from '../data/constants';
+import { verifyToken, getUserData } from '../utils/authControllers';
 
 class Login extends React.PureComponent {
   static async getInitialProps(ctx) {
-    const {
-      sound,
-      music,
-      language,
-      difficulty,
-    } = nookies.get(ctx);
+    let { sound, language } = nookies.get(ctx);
+    sound = sound === 'true';
+
+    const data = verifyToken(ctx);
+    if (data.authenticated) {
+      const settings = await getUserData(data.user);
+      sound = settings.sound;
+      language = settings.language;
+    }
 
     return {
       sound,
-      music,
       lang: language,
-      difficulty,
     };
   }
 
@@ -34,7 +33,7 @@ class Login extends React.PureComponent {
           inputId="login"
           mode="login"
           lang={lang}
-          sound={sound === 'true'}
+          sound={sound}
           focus
         />
       </>

@@ -4,8 +4,9 @@ import nookies from 'nookies';
 import App from 'next/app';
 import Head from 'next/head';
 
+import { verifyToken, getUserData } from '../utils/authControllers';
+
 class MyApp extends App {
-  // ?????? разница между initial и serverSide props ??????
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
 
@@ -20,8 +21,33 @@ class MyApp extends App {
         ctx.req.headers.cookie = 'sound=true; music=true; language=en; difficulty=medium';
       }
 
-      pageProps.lang = nookies.get(ctx).language;
-      pageProps.settings = nookies.get(ctx);
+      const { userName } = nookies.get(ctx);
+      const data = verifyToken(ctx);
+
+      if (data.authenticated) {
+        const userSettings = await getUserData(data.user);
+        pageProps.lang = userSettings.settings.language;
+        pageProps.settings = userSettings.settings;
+        nookies.set(ctx, 'userName', userSettings.user.login, { path: '/', expiresIn: '7d' });
+      } else if (userName) {
+        const userSettings = await getUserData(userName);
+        pageProps.lang = userSettings.settings.language;
+        pageProps.settings = userSettings.settings;
+      } else {
+        pageProps.lang = nookies.get(ctx).language;
+        const {
+          sound,
+          music,
+          language,
+          difficulty,
+        } = nookies.get(ctx);
+        pageProps.settings = {
+          sound: sound === 'true',
+          music: music === 'true',
+          language,
+          difficulty,
+        };
+      }
     }
 
     return { pageProps };
@@ -32,9 +58,18 @@ class MyApp extends App {
     audioElement.play();
   }
 
+  componentDidUpdate() {
+    const musicProp = this.props.pageProps.music || this.props.pageProps.settings.music;
+    const audioElement = document.querySelector('video');
+    if (musicProp && audioElement.muted) {
+      audioElement.muted = false;
+      this.playAudio();
+    }
+  }
+
   componentDidMount() {
     const musicProp = this.props.pageProps.music || this.props.pageProps.settings.music;
-    if (musicProp === 'true') {
+    if (musicProp) {
       document.body.addEventListener('mousedown', this.playAudio);
       document.body.addEventListener('touchstart', this.playAudio);
       document.body.addEventListener('keydown', this.playAudio);

@@ -190,7 +190,7 @@ class FormForGame extends React.PureComponent {
                     type="submit"
                     value={textForGame[lang].inscription.ok}
                     onClick={() => {
-                      if (sound === 'true') {
+                      if (sound) {
                         new Audio(click).play();
                       }
                     }}
@@ -234,7 +234,7 @@ class FormForGame extends React.PureComponent {
                 value={textForGame[lang].inscription.check}
                 disabled={isDisabled}
                 onClick={() => {
-                  if (sound === 'true') {
+                  if (sound) {
                     new Audio(click).play();
                   }
                 }}

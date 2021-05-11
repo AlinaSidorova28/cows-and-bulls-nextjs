@@ -2,6 +2,7 @@ import React from 'react';
 import nookies from 'nookies';
 import style from '../css/Rules.module.scss';
 
+import { getUserData } from '../utils/authControllers';
 import InformativeForm from '../components/Form/InformativeForm';
 import textForGame from '../data/constants';
 
@@ -10,12 +11,32 @@ import cowPicture from '../components/Form/img/cow-icon.png';
 
 class Rules extends React.PureComponent {
   static async getInitialProps(ctx) {
-    const { language, sound } = nookies.get(ctx);
-    return { lang: language, sound };
+    const {
+      language,
+      music,
+      sound,
+      difficulty,
+    } = nookies.get(ctx);
+    let settings = {
+      sound: sound === 'true',
+      music: music === 'true',
+      language,
+      difficulty,
+    };
+    const { userName } = nookies.get(ctx);
+
+    if (userName) {
+      settings = await getUserData(userName);
+    }
+
+    return {
+      lang: settings.language,
+      settings,
+    };
   }
 
   render() {
-    const { lang, sound } = this.props;
+    const { lang, settings } = this.props;
 
     const content = (
       <>
@@ -42,7 +63,7 @@ class Rules extends React.PureComponent {
           mode="rules"
           content={content}
           lang={lang}
-          sound={sound === 'true'}
+          sound={settings.sound}
         />
       </>
     );

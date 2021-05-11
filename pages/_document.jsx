@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head />
         <body className="body">
-          <video autoPlay loop style={{ display: 'none' }} muted={this.props.__NEXT_DATA__.props.pageProps.settings.music !== 'true'}>
+          <video autoPlay loop style={{ display: 'none' }} muted={!this.props.__NEXT_DATA__.props.pageProps.settings.music}>
             <source src={music} type="audio/mp3" />
           </video>
           <Main />

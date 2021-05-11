@@ -63,7 +63,7 @@ class AuthorizationForm extends React.PureComponent {
     checkConfirm(e, inputValuePassword, lang);
   }
 
-  handleErrors(text) {
+  async handleErrors(text) {
     const { lang } = this.props;
 
     switch (text) {
@@ -89,7 +89,8 @@ class AuthorizationForm extends React.PureComponent {
       this.makeFocus('name');
       break;
     default:
-      this.setState({ errorPlace: true });
+      this.setState({ errorPlace: '' });
+      await fetch('/');
       redirectTo('/');
       break;
     }
@@ -121,8 +122,6 @@ class AuthorizationForm extends React.PureComponent {
         }).then((response) => response.json());
 
         this.handleErrors(res.error);
-
-        // console.log(res);
       } catch (error) {
         console.log(error);
       }
@@ -208,6 +207,9 @@ class AuthorizationForm extends React.PureComponent {
                     alt="visible"
                     onClick={() => {
                       this.setState({ isPasswordHidden: !isPasswordHidden });
+                      if (sound) {
+                        new Audio(click).play();
+                      }
                     }}
                   />
                   <div className={`${style.before} ${!isPasswordHidden ? style.hidden : ''}`}>/</div>
@@ -230,6 +232,9 @@ class AuthorizationForm extends React.PureComponent {
                     alt="visible"
                     onClick={() => {
                       this.setState({ isConfirmHidden: !isConfirmHidden });
+                      if (sound) {
+                        new Audio(click).play();
+                      }
                     }}
                   />
                   <div className={`${style.before} ${!isConfirmHidden ? style.hidden : ''}`}>/</div>
@@ -241,7 +246,7 @@ class AuthorizationForm extends React.PureComponent {
                 type="submit"
                 value={text.toLowerCase()}
                 onClick={() => {
-                  if (sound === 'true') {
+                  if (sound) {
                     new Audio(click).play();
                   }
                 }}
@@ -256,7 +261,12 @@ class AuthorizationForm extends React.PureComponent {
                   value={isForSignUp
                     ? textForGame[lang].authorization.text[0]
                     : textForGame[lang].authorization.text[1]}
-                  onClick={this.resetInputs}
+                  onClick={() => {
+                    this.resetInputs();
+                    if (sound) {
+                      new Audio(click).play();
+                    }
+                  }}
                 />
               </div>
             </form>

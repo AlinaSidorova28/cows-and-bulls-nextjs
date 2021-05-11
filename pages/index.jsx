@@ -1,21 +1,24 @@
 import React from 'react';
 import nookies from 'nookies';
-// import dbConnect from '../utils/dbConnect';
-// import User from '../models/User';
-// import Settings from '../models/Settings';
+import { getUserData } from '../utils/authControllers';
 import Menu from '../components/Menu/Menu';
 
 class HomePage extends React.PureComponent {
   static async getInitialProps(ctx) {
-    // await dbConnect();
+    let { language, sound } = nookies.get(ctx);
+    const { userName } = nookies.get(ctx);
+    sound = sound === 'true';
 
-    // const anon = await User.find({});
-    // const res = await Settings.find({});
+    if (userName) {
+      const { settings } = await getUserData(userName);
+      sound = settings.sound;
+      language = settings.language;
+    }
 
-    // ???????? User is not defined ??????????
-
-    const settings = nookies.get(ctx);
-    return { settings, lang: settings.language, sound: settings.sound };
+    return {
+      lang: language,
+      sound,
+    };
   }
 
   render() {
@@ -25,7 +28,7 @@ class HomePage extends React.PureComponent {
       <div className="App">
         <div className="logo" />
         <div className="login-icon" />
-        <Menu lang={lang} sound={sound === 'true'} />
+        <Menu lang={lang} sound={sound} />
       </div>
     );
   }

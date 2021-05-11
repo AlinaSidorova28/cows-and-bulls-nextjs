@@ -18,8 +18,8 @@ class Settings extends React.PureComponent {
     const { settings } = this.props;
 
     this.state = {
-      soundOn: settings.sound === 'true',
-      musicOn: settings.music === 'true',
+      soundOn: settings.sound,
+      musicOn: settings.music,
       lang: settings.language,
       level: textForGame[settings.language].settings.difficulty.indexOf(settings.difficulty),
       visible: false,

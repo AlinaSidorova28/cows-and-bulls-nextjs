@@ -3,28 +3,38 @@ import Link from 'next/link';
 import nookies from 'nookies';
 import style from '../css/Statistics.module.scss';
 
+import { getUserData } from '../utils/authControllers';
 import InformativeForm from '../components/Form/InformativeForm';
 import textForGame from '../data/constants';
 
 class Statistics extends React.PureComponent {
   static async getInitialProps(ctx) {
     const {
-      sound,
-      music,
       language,
+      music,
+      sound,
       difficulty,
     } = nookies.get(ctx);
+    let settings = {
+      sound: sound === 'true',
+      music: music === 'true',
+      language,
+      difficulty,
+    };
+    const { userName } = nookies.get(ctx);
+
+    if (userName) {
+      settings = await getUserData(userName);
+    }
 
     return {
-      sound,
-      music,
-      lang: language,
-      difficulty,
+      lang: settings.language,
+      settings,
     };
   }
 
   render() {
-    const { lang, sound } = this.props;
+    const { lang, settings } = this.props;
 
     const content = (
       <>
@@ -47,7 +57,7 @@ class Statistics extends React.PureComponent {
           mode="rules"
           content={content}
           lang={lang}
-          sound={sound === 'true'}
+          sound={settings.sound}
         />
       </>
     );
