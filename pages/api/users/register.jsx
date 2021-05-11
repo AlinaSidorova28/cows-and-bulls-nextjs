@@ -27,10 +27,10 @@ const register = async (req, res) => {
 
       nookies.set({ req, res }, 'token', token, { httpOnly: true, path: '/' });
 
-      res.status(201).json({ status: 'success', data: { user, settings, token } });
+      res.status(201).json({ status: 'success', data: { token } });
     }
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(500).json({ error });
   }
 };
 

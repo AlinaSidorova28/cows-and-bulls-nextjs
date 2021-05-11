@@ -90,8 +90,12 @@ class AuthorizationForm extends React.PureComponent {
       break;
     default:
       this.setState({ errorPlace: '' });
-      await fetch('/');
-      redirectTo('/');
+      try {
+        await fetch('/');
+        redirectTo('/');
+      } catch (err) {
+        console.log(err);
+      }
       break;
     }
   }
