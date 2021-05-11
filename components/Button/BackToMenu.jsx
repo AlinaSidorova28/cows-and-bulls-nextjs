@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { setCookie } from 'nookies';
+import { setCookie, parseCookies } from 'nookies';
 import style from './BackToMenu.module.scss';
 
 import textForGame from '../../data/constants';
@@ -12,17 +12,38 @@ class BackToMenu extends React.PureComponent {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  async handleClick() {
     const { settings, sound } = this.props;
     if (sound) {
       new Audio(click).play();
     }
 
+    const { userName } = parseCookies();
+
     if (settings) {
-      setCookie(null, 'sound', settings.sound, { path: '/' });
-      setCookie(null, 'music', settings.music, { path: '/' });
-      setCookie(null, 'language', settings.language, { path: '/' });
-      setCookie(null, 'difficulty', settings.difficulty, { path: '/' });
+      if (userName) {
+        try {
+          await fetch(`/api/settings/${userName}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              sound: settings.sound,
+              music: settings.music,
+              language: settings.language,
+              difficulty: settings.difficulty,
+            }),
+          }).then((response) => response.json());
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setCookie(null, 'sound', settings.sound, { path: '/' });
+        setCookie(null, 'music', settings.music, { path: '/' });
+        setCookie(null, 'language', settings.language, { path: '/' });
+        setCookie(null, 'difficulty', settings.difficulty, { path: '/' });
+      }
     }
   }
 
