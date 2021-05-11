@@ -19,7 +19,8 @@ const verifyToken = (ctx) => {
 const getUserData = async (userId) => {
   try {
     // что делать с url деплоя ??
-    const res = await fetch(`${process.env.BASE_URI || 'http://localhost:3000'}/api/settings/${userId}`, {
+    // const res = await fetch(`${process.env.BASE_URI || 'http://localhost:3000'}/api/settings/${userId}`, {
+    const res = await fetch(`${process.env.BASE_URI || ''}/api/settings/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
