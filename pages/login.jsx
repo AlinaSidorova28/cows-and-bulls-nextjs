@@ -28,7 +28,6 @@ class Login extends React.PureComponent {
     return (
       <>
         <div className="logo" />
-        <div className="login-icon" />
         <AuthorizationForm
           inputId="login"
           mode="login"

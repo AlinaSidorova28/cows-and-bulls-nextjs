@@ -93,6 +93,7 @@ const textForGame = {
       text: [
         'Log in',
         'Sign up',
+        'Log out',
       ],
       placeholder: [
         'Nickname',
@@ -199,6 +200,7 @@ const textForGame = {
       text: [
         'Войти',
         'Зарегистрироваться',
+        'Выйти',
       ],
       placeholder: [
         'Ваше имя',

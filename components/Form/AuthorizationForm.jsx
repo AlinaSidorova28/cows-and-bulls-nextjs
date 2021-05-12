@@ -190,6 +190,7 @@ class AuthorizationForm extends React.PureComponent {
                 className={`${style['input-field-name']} ${style.name} ${errorPlace === 'name' ? style.red : ''}`}
                 autoComplete="off"
                 autoFocus
+                maxLength="18"
                 value={inputValueName}
                 placeholder={textForGame[lang].authorization.placeholder[0]}
                 onChange={this.handleInputName}

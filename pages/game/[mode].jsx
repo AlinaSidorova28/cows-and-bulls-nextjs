@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import { getUserData } from '../../utils/authControllers';
 import SinglePlayer from '../../components/Game/SinglePlayer';
 import MultiPlayer from '../../components/Game/MultiPlayer';
+import LoginDropdown from '../../components/Menu/LoginDropdown';
 
-const Game = ({ settings }) => {
+const Game = ({ settings, userName }) => {
   const router = useRouter();
   const { mode } = router.query;
 
@@ -13,7 +14,7 @@ const Game = ({ settings }) => {
     return (
       <>
         <div className="logo" />
-        <div className="login-icon" />
+        <LoginDropdown userName={userName} lang={settings.language} sound={settings.sound} />
         <SinglePlayer settings={settings} />
       </>
     );
@@ -22,7 +23,7 @@ const Game = ({ settings }) => {
   return (
     <>
       <div className="logo" />
-      <div className="login-icon" />
+      <LoginDropdown userName={userName} lang={settings.language} sound={settings.sound} />
       <MultiPlayer settings={settings} />
     </>
   );
@@ -47,7 +48,7 @@ Game.getInitialProps = async (ctx) => {
     settings = await getUserData(userName).settings;
   }
 
-  return { settings };
+  return { settings, userName };
 };
 
 export default Game;

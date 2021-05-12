@@ -61,22 +61,3 @@ $light-pink: #f8adb1;
     width: 80px;
   }
 }
-
-.login-icon {
-  background: no-repeat center url('../public/img/login.png');
-  background-size: 40px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  height: 45px;
-  width: 45px;
-  cursor: pointer;
-  z-index: 50;
-}
-
-.logout-icon {
-  @extend .login-icon;
-
-  background: no-repeat center url('../public/img/logout.png');
-  background-size: 40px;
-}

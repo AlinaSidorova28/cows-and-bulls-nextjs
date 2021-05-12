@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import nookies from 'nookies';
+import redirectTo from './redirectTo';
 
 const verifyToken = (ctx) => {
   const jwtToken = nookies.get(ctx).token;
@@ -32,8 +33,18 @@ const getUserData = async (userId) => {
   }
 };
 
-const logout = () => {
-
+const logout = async () => {
+  try {
+    await fetch('/api/users/logout', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => response.json());
+    redirectTo('/');
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export { verifyToken, getUserData, logout };

@@ -1,7 +1,9 @@
 import React from 'react';
 import nookies from 'nookies';
+
 import { getUserData } from '../utils/authControllers';
 import Menu from '../components/Menu/Menu';
+import LoginDropdown from '../components/Menu/LoginDropdown';
 
 class HomePage extends React.PureComponent {
   static async getInitialProps(ctx) {
@@ -18,16 +20,17 @@ class HomePage extends React.PureComponent {
     return {
       lang: language,
       sound,
+      userName,
     };
   }
 
   render() {
-    const { lang, sound } = this.props;
+    const { lang, sound, userName } = this.props;
 
     return (
       <div className="App">
         <div className="logo" />
-        <div className="login-icon" />
+        <LoginDropdown userName={userName} lang={lang} sound={sound} />
         <Menu lang={lang} sound={sound} />
       </div>
     );

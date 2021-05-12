@@ -61,10 +61,7 @@ class MyApp extends App {
   componentDidUpdate() {
     const musicProp = this.props.pageProps.music || this.props.pageProps.settings.music;
     const audioElement = document.querySelector('video');
-    if (musicProp && audioElement.muted) {
-      audioElement.muted = false;
-      this.playAudio();
-    }
+    audioElement.muted = !musicProp;
   }
 
   componentDidMount() {

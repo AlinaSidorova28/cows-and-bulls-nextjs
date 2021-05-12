@@ -5,6 +5,7 @@ import style from '../css/Statistics.module.scss';
 
 import { getUserData } from '../utils/authControllers';
 import InformativeForm from '../components/Form/InformativeForm';
+import LoginDropdown from '../components/Menu/LoginDropdown';
 import textForGame from '../data/constants';
 
 class Statistics extends React.PureComponent {
@@ -14,6 +15,7 @@ class Statistics extends React.PureComponent {
       music,
       sound,
       difficulty,
+      userName,
     } = nookies.get(ctx);
     let settings = {
       sound: sound === 'true',
@@ -21,7 +23,6 @@ class Statistics extends React.PureComponent {
       language,
       difficulty,
     };
-    const { userName } = nookies.get(ctx);
 
     if (userName) {
       settings = await getUserData(userName);
@@ -30,28 +31,39 @@ class Statistics extends React.PureComponent {
     return {
       lang: settings.language,
       settings,
+      userName,
     };
   }
 
   render() {
-    const { lang, settings } = this.props;
+    const { lang, settings, userName } = this.props;
 
-    const content = (
-      <>
-        <div className={style['message-wrapper']}>
-          <h3>
-            {textForGame[lang].statistics[0]}
-          </h3>
-          <Link href="/login" as="login">
-            {` ${textForGame[lang].statistics[1]}`}
-          </Link>
-        </div>
-      </>
-    );
+    let content;
+    if (!userName) {
+      content = (
+        <>
+          <div className={style['message-wrapper']}>
+            <h3>
+              {textForGame[lang].statistics[0]}
+            </h3>
+            <Link href="/login" as="login">
+              {` ${textForGame[lang].statistics[1]}`}
+            </Link>
+          </div>
+        </>
+      );
+    } else {
+      content = (
+        <>
+          <h3>{userName}</h3>
+        </>
+      );
+    }
+
     return (
       <>
         <div className="logo" />
-        <div className="login-icon" />
+        <LoginDropdown userName={userName} lang={lang} sound={settings.sound} />
         <InformativeForm
           text={textForGame[lang].menu[4]}
           mode="rules"

@@ -6,6 +6,7 @@ import settingsStyle from '../css/Settings.module.scss';
 import formStyle from '../components/Form/Form.module.scss';
 
 import InformativeForm from '../components/Form/InformativeForm';
+import LoginDropdown from '../components/Menu/LoginDropdown';
 import textForGame from '../data/constants';
 import soundImage from '../public/img/sound.png';
 import musicImage from '../public/img/music.png';
@@ -30,8 +31,8 @@ class Settings extends React.PureComponent {
   }
 
   static async getInitialProps(ctx) {
-    const settings = nookies.get(ctx);
-    return { settings };
+    const { settings, userName } = nookies.get(ctx);
+    return { settings, userName };
   }
 
   onClickHandler(e) {
@@ -64,6 +65,7 @@ class Settings extends React.PureComponent {
       level,
       visible,
     } = this.state;
+    const { userName } = this.props;
 
     const content = (
       <>
@@ -186,7 +188,7 @@ class Settings extends React.PureComponent {
     return (
       <>
         <div className="logo" />
-        <div className="login-icon" />
+        <LoginDropdown userName={userName} lang={lang} sound={soundOn} />
         <div
           role="button"
           className={`${settingsStyle['click-background']} ${visible ? '' : settingsStyle.hidden}`}

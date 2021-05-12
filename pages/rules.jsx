@@ -4,6 +4,7 @@ import style from '../css/Rules.module.scss';
 
 import { getUserData } from '../utils/authControllers';
 import InformativeForm from '../components/Form/InformativeForm';
+import LoginDropdown from '../components/Menu/LoginDropdown';
 import textForGame from '../data/constants';
 
 import bullPicture from '../components/Form/img/bull-icon.png';
@@ -16,6 +17,7 @@ class Rules extends React.PureComponent {
       music,
       sound,
       difficulty,
+      userName,
     } = nookies.get(ctx);
     let settings = {
       sound: sound === 'true',
@@ -23,7 +25,6 @@ class Rules extends React.PureComponent {
       language,
       difficulty,
     };
-    const { userName } = nookies.get(ctx);
 
     if (userName) {
       settings = await getUserData(userName);
@@ -32,11 +33,12 @@ class Rules extends React.PureComponent {
     return {
       lang: settings.language,
       settings,
+      userName,
     };
   }
 
   render() {
-    const { lang, settings } = this.props;
+    const { lang, settings, userName } = this.props;
 
     const content = (
       <>
@@ -57,7 +59,7 @@ class Rules extends React.PureComponent {
     return (
       <>
         <div className="logo" />
-        <div className="login-icon" />
+        <LoginDropdown userName={userName} lang={lang} sound={settings.sound} />
         <InformativeForm
           text={textForGame[lang].menu[2]}
           mode="rules"
