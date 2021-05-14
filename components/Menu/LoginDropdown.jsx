@@ -18,7 +18,6 @@ class LoginDropdown extends React.PureComponent {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // убирать по клику снаружи
   handleClick() {
     const { sound, userName } = this.props;
     if (sound) {

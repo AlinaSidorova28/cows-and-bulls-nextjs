@@ -28,7 +28,6 @@ class MyApp extends App {
         const userSettings = await getUserData(data.user);
         pageProps.lang = userSettings.settings.language;
         pageProps.settings = userSettings.settings;
-        nookies.set(ctx, 'userName', userSettings.user.login, { path: '/', expiresIn: '7d' });
       } else if (userName) {
         const userSettings = await getUserData(userName);
         pageProps.lang = userSettings.settings.language;

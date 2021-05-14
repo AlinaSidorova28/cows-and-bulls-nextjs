@@ -17,7 +17,8 @@ const authorize = async (req, res) => {
             expiresIn: '7d',
           });
 
-          nookies.set({ req, res }, 'token', token, { httpOnly: true, path: '/' });
+          nookies.set({ req, res }, 'token', token, { httpOnly: true, path: '/', maxAge: 60 * 60 * 24 * 7 });
+          nookies.set({ req, res }, 'userName', user.login, { path: '/', maxAge: 60 * 60 * 24 * 7 });
 
           res.status(200).json({ status: 'success', data: { token } });
         } else {

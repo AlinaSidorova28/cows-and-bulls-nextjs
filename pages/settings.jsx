@@ -8,6 +8,7 @@ import formStyle from '../components/Form/Form.module.scss';
 import InformativeForm from '../components/Form/InformativeForm';
 import LoginDropdown from '../components/Menu/LoginDropdown';
 import textForGame from '../data/constants';
+import saveSettings from '../utils/saveSettings';
 import soundImage from '../public/img/sound.png';
 import musicImage from '../public/img/music.png';
 import bookImage from '../public/img/book.png';
@@ -177,6 +178,15 @@ class Settings extends React.PureComponent {
                     if (soundOn) {
                       new Audio(click).play();
                     }
+
+                    const settings = {
+                      sound: soundOn,
+                      music: musicOn,
+                      language: lang,
+                      difficulty: textForGame[lang].settings.difficulty[level],
+                    };
+
+                    saveSettings(settings);
                   }}
                 />
               </Link>

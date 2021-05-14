@@ -55,7 +55,11 @@ class Statistics extends React.PureComponent {
     } else {
       content = (
         <>
-          <h3>{userName}</h3>
+          {/* <h3>{userName}</h3> */}
+          <h3>
+            У Вас пока нет рейтинга. Сыграйте свою первую партию в режиме
+            <Link href="/game/[mode]" as="game/single"> &quot;1 игрок&quot;</Link>
+          </h3>
         </>
       );
     }
