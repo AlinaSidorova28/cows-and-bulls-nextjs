@@ -4,7 +4,7 @@ import style from './BackToMenu.module.scss';
 
 import textForGame from '../../data/constants';
 import click from '../../public/audio/click.mp3';
-import saveSettings from '../../utils/saveSettings';
+import { saveSettings } from '../../utils/saveChanges';
 
 class BackToMenu extends React.PureComponent {
   render() {

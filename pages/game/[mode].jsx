@@ -15,7 +15,7 @@ const Game = ({ settings, userName }) => {
       <>
         <div className="logo" />
         <LoginDropdown userName={userName} lang={settings.language} sound={settings.sound} />
-        <SinglePlayer settings={settings} />
+        <SinglePlayer settings={settings} userName={userName} />
       </>
     );
   }

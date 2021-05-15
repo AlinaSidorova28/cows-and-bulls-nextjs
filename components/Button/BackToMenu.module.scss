@@ -25,6 +25,20 @@
   }
 }
 
+.form-for-reset-button {
+  @extend .form-for-button;
+
+  margin: 10px 0 -10px;
+
+  @media screen and (max-width: $width) {
+    margin-bottom: 0;
+  }
+
+  .back-to-menu-button {
+    font-size: 20px;
+  } 
+}
+
 .buttton-for-game {
   margin: 0;
 }

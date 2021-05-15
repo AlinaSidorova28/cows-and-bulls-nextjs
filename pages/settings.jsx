@@ -8,7 +8,7 @@ import formStyle from '../components/Form/Form.module.scss';
 import InformativeForm from '../components/Form/InformativeForm';
 import LoginDropdown from '../components/Menu/LoginDropdown';
 import textForGame from '../data/constants';
-import saveSettings from '../utils/saveSettings';
+import { saveSettings } from '../utils/saveChanges';
 import soundImage from '../public/img/sound.png';
 import musicImage from '../public/img/music.png';
 import bookImage from '../public/img/book.png';

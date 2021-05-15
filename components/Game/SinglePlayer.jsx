@@ -5,6 +5,7 @@ import Win from './Win';
 import FormForGame from '../Form/FormForGame';
 import generateNumber from '../../utils/generator';
 import textForGame from '../../data/constants';
+import { saveStatistics } from '../../utils/saveChanges';
 
 class SinglePlayer extends React.Component {
   constructor(props) {
@@ -44,9 +45,18 @@ class SinglePlayer extends React.Component {
       diffIndex,
     } = this.state;
 
-    const { settings } = this.props;
+    const { settings, userName } = this.props;
 
     if (won) {
+      if (userName) {
+        const difficultyEn = textForGame.en.settings.difficulty[
+          textForGame[settings.language].settings.difficulty
+            .indexOf(settings.difficulty)
+        ];
+
+        saveStatistics(difficultyEn, attempts, number);
+      }
+
       return (
         <Win
           attempts={attempts}

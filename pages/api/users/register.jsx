@@ -5,6 +5,7 @@ import nookies from 'nookies';
 import dbConnect from '../../../utils/dbConnect';
 import User from '../../../models/User';
 import Settings from '../../../models/Settings';
+import Statistics from '../../../models/Statistics';
 
 const register = async (req, res) => {
   const { login, password } = req.body;
@@ -13,12 +14,14 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 8);
     const user = new User({ login, password: hashedPassword });
     const settings = new Settings({ user: user._id });
+    const statistics = new Statistics({ user: user._id });
 
     if (candidate) {
       res.status(400).json({ status: 'error', error: 'Such user already exists' });
     } else {
       await user.save();
       await settings.save();
+      await statistics.save();
 
       const token = jwt.sign({ userId: candidate ? candidate._id : user._id },
         process.env.JWT_SECRET_KEY, {

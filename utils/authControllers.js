@@ -19,7 +19,7 @@ const verifyToken = (ctx) => {
 
 const getUserData = async (userId) => {
   try {
-    const res = await fetch(`${process.env.BASE_URI || ''}/api/settings/${userId}`, {
+    const res = await fetch(`${process.env.BASE_URI || ''}/api/users/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -30,4 +30,43 @@ const saveSettings = async (settings) => {
   }
 };
 
-export default saveSettings;
+const saveStatistics = async (difficulty, moves, number) => {
+  const { userName } = parseCookies();
+
+  if (userName) {
+    try {
+      await fetch(`/api/statistics/${userName}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          difficulty,
+          moves,
+          number,
+        }),
+      }).then((response) => response.json());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+
+const resetStatistics = async () => {
+  const { userName } = parseCookies();
+
+  if (userName) {
+    try {
+      await fetch(`/api/statistics/${userName}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => response.json());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+
+export { saveSettings, saveStatistics, resetStatistics };

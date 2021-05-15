@@ -1,3 +1,5 @@
+@import 'index.scss';
+
 .message-wrapper {
   width: 100%;
   text-align: center;
@@ -9,4 +11,27 @@
   a {
     text-decoration: none;
   }
+}
+
+.rate-table {
+  width: 100%;
+
+  .mode-name {
+    font-size: 20px;
+    border-style: groove;
+    border-radius: 6px;
+    background: radial-gradient(transparent, $light-pink);
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  td {
+    overflow-wrap: anywhere;
+  }
+}
+
+.hidden {
+  display: none;
 }

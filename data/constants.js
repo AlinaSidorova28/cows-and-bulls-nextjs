@@ -26,6 +26,7 @@ const textForGame = {
     },
     inscription: {
       back: 'Back to menu',
+      reset: 'Reset statistics',
       check: 'check',
       ok: 'confirm',
     },
@@ -85,10 +86,24 @@ const textForGame = {
         'hard',
       ],
     },
-    statistics: [
-      'To see the statistics, please,',
-      'log in',
-    ],
+    statistics: {
+      text: [
+        'To see the statistics, please,',
+        'log in',
+        'You don\'t have ranking yet. Play your first party in mode',
+      ],
+      columnNames: [
+        'Rank',
+        'Name',
+        'Moves',
+        'Number',
+      ],
+      question: 'Are you sure you want to reset the whole statistics?',
+      confirm: [
+        'Yes',
+        'No',
+      ],
+    },
     authorization: {
       text: [
         'Log in',
@@ -133,6 +148,7 @@ const textForGame = {
     },
     inscription: {
       back: 'Вернуться в меню',
+      reset: 'Сбросить прогресс',
       check: 'проверить',
       ok: 'далее',
     },
@@ -192,10 +208,24 @@ const textForGame = {
         'сложно',
       ],
     },
-    statistics: [
-      'Чтобы посмотреть статистику,',
-      'войдите в систему',
-    ],
+    statistics: {
+      text: [
+        'Чтобы посмотреть статистику,',
+        'войдите в систему',
+        'У Вас пока нет рейтинга. Сыграйте свою первую партию в режиме',
+      ],
+      columnNames: [
+        'Рейтинг',
+        'Имя',
+        'Ходы',
+        'Число',
+      ],
+      question: 'Вы уверены, что хотите сбросить всю статистику?',
+      confirm: [
+        'Да',
+        'Нет',
+      ],
+    },
     authorization: {
       text: [
         'Войти',
