@@ -24,10 +24,6 @@ class SinglePlayer extends React.Component {
     this.updateAttempts = this.updateAttempts.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.state.number);
-  }
-
   updateWon() {
     this.setState({ won: true });
   }
