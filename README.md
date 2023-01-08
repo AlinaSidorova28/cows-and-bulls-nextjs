@@ -1,4 +1,4 @@
-# Plunge into your childhood with a wonderful game '[Cows and bulls](https://alinasidorova28-cows-and-bulls.herokuapp.com/)'!  
+# Plunge into your childhood with a wonderful game '[Cows and bulls](https://cows-and-bulls.glitch.me/)'!  
 
 ## Install and run:
 
